@@ -44,17 +44,17 @@ Este repositório contém a implementação de soluções paralelas utilizando O
 **Tarefa A: Load Balancing**
 Calcula Fibonacci de forma intensiva para simular carga irregular. Compara políticas de escalonamento:
 
- *static*: Divisão fixa.
+- static: Divisão fixa.
 
- *dynamic*: Alocação sob demanda (vários chunks).
+- dynamic: Alocação sob demanda (vários chunks).
 
- *guided*: Chunks decrescentes.
+- guided: Chunks decrescentes.
 
 **Tarefa B: Contenção de Memória**
 Calcula histograma de um vetor. Compara estratégias de proteção de memória:
 
- *critical*: Bloqueio global (alta contenção).
+- critical: Bloqueio global (alta contenção).
 
- *atomic*: Bloqueio por posição de memória.
+- atomic: Bloqueio por posição de memória.
 
- *local*: Agregação em buffers locais (privatização).
+- local: Agregação em buffers locais (privatização).
