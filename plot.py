@@ -7,12 +7,19 @@ import os
 sns.set_theme(style="whitegrid")
 plt.rcParams.update({'figure.max_open_warning': 0})
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+RESULTS_DIR = os.path.join(BASE_DIR, "results")
+DATA_A_PATH = os.path.join(RESULTS_DIR, "dados_A.csv")
+DATA_B_PATH = os.path.join(RESULTS_DIR, "dados_B.csv")
+PLOT_A_PATH = os.path.join(RESULTS_DIR, "grafico_tarefa_A.png")
+PLOT_B_PATH = os.path.join(RESULTS_DIR, "grafico_tarefa_B.png")
+
 def plot_task_a():
-    if not os.path.exists('dados_A.csv'):
-        print("Arquivo dados_A.csv não encontrado.")
+    if not os.path.exists(DATA_A_PATH):
+        print(f"Arquivo {DATA_A_PATH} não encontrado.")
         return
 
-    df = pd.read_csv('dados_A.csv')
+    df = pd.read_csv(DATA_A_PATH)
     
     # Pega o maior N e maior K para mostrar o cenário mais crítico
     max_N = df['N'].max()
@@ -34,15 +41,16 @@ def plot_task_a():
     plt.title(f'Tarefa A: Comparação de Schedules (N={max_N}, K={max_K})')
     plt.ylabel('Tempo (s)')
     plt.xlabel('Número de Threads')
-    plt.savefig('grafico_tarefa_A.png')
-    print("Gerado: grafico_tarefa_A.png")
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+    plt.savefig(PLOT_A_PATH)
+    print(f"Gerado: {PLOT_A_PATH}")
 
 def plot_task_b():
-    if not os.path.exists('dados_B.csv'):
-        print("Arquivo dados_B.csv não encontrado.")
+    if not os.path.exists(DATA_B_PATH):
+        print(f"Arquivo {DATA_B_PATH} não encontrado.")
         return
 
-    df = pd.read_csv('dados_B.csv')
+    df = pd.read_csv(DATA_B_PATH)
     
     # Pegar cenário com alta contenção (B pequeno) e muito trabalho (N grande)
     max_N = df['N'].max()
@@ -59,8 +67,9 @@ def plot_task_b():
     plt.title(f'Tarefa B: Sincronização (N={max_N}, B={min_B}) - Escala Log')
     plt.ylabel('Tempo (s) - Log Scale')
     plt.xlabel('Número de Threads')
-    plt.savefig('grafico_tarefa_B.png')
-    print("Gerado: grafico_tarefa_B.png")
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+    plt.savefig(PLOT_B_PATH)
+    print(f"Gerado: {PLOT_B_PATH}")
 
 if __name__ == "__main__":
     plot_task_a()

@@ -6,13 +6,18 @@ Este repositório contém a implementação de soluções paralelas utilizando O
 *André Pereira Rodrigues (19102468)*
 
 ## Estrutura do Projeto
+- `README.md`: Visão geral e instruções
+- `docs/`: Documentação do projeto
+  - `como-reproduzir.md`: Informações de reprodutibilidade
+  - `analise-experimental.md`: Análise experimental e gráficos
+- `results/`: Saídas e gráficos gerados
+  - `dados_A.csv`: Resultados dos testes da Tarefa A
+  - `dados_B.csv`: Resultados dos testes da Tarefa B
+  - `grafico_tarefa_A.png`: Gráfico com os testes da Tarefa A
+  - `grafico_tarefa_B.png`: Gráfico com os testes da Tarefa B
 - `src/`: Códigos fonte em C++
   - `tarefaA.cpp`: Cálculo de Fibonacci (Laços Irregulares)
   - `tarefaB.cpp`: Histograma (Sincronização e Atomicidade)
-- `dados_A.csv`: Resultados dos testes da Tarefa A
-- `dados_B.csv`: Resultados dos testes da Tarefa B
-- `grafico_tarefa_A.png`: Gráfico com os testes da Tarefa A
-- `grafico_tarefa_B.png`: Gráfico com os testes da Tarefa B
 - `Makefile`: Automação de compilação
 - `plot.py`: Script para geração de gráficos
 - `run.sh`: Script de automação de testes
@@ -29,12 +34,12 @@ Este repositório contém a implementação de soluções paralelas utilizando O
     make all
     ```
 
-2. **Executar a bateria de testes automatizada:** Este comando roda todos os casos de teste e gera os arquivos CSV (dados_A.csv e dados_B.csv).
+2. **Executar a bateria de testes automatizada:** Este comando roda todos os casos de teste e gera os arquivos CSV em `results/`.
     ```bash
     ./run.sh
     ```
 
-3. **Gerar os gráficos:** 
+3. **Gerar os gráficos:** Os arquivos PNG são salvos em `results/`.
     ```bash
     python3 plot.py
     ```
