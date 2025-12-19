@@ -28,6 +28,10 @@ Este repositório contém a implementação de soluções paralelas utilizando O
 - Python 3 (para plotagem, requer `pandas`, `matplotlib`, `seaborn`)
 - Instalação: `pip install pandas matplotlib seaborn`
 
+## Formatação e Pre-commit
+- Script de formatação: `./scripts/format.sh` (usa `black` e `clang-format`)
+- Hooks automáticos: `pre-commit install` e depois `pre-commit run --all-files`
+
 ## Como Compilar e Executar
 
 1. **Compilar o projeto:**
