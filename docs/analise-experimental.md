@@ -12,7 +12,7 @@
 O objetivo foi avaliar o comportamento de diferentes escalonadores (*schedules*) em um cenário de carga irregular (cálculo de Fibonacci dependente do índice).
 
 ### Gráfico de Desempenho
-![Gráfico Tarefa A](grafico_tarefa_A.png)
+![Gráfico Tarefa A](../results/grafico_tarefa_A.png)
 *(Eixo Y representa o tempo em segundos - quanto menor, melhor)*
 
 ### Análise
@@ -29,7 +29,7 @@ O objetivo foi avaliar o comportamento de diferentes escalonadores (*schedules*)
 Avaliou-se o impacto de seções críticas e operações atômicas na construção de um histograma compartilhado.
 
 ### Gráfico de Desempenho (Escala Logarítmica)
-![Gráfico Tarefa B](grafico_tarefa_B.png)
+![Gráfico Tarefa B](../results/grafico_tarefa_B.png)
 *(Atenção: Escala Logarítmica. A diferença real é de várias ordens de grandeza)*
 
 ### Análise
