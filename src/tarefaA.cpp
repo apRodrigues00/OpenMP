@@ -1,16 +1,20 @@
-#include <iostream>
-#include <vector>
-#include <omp.h>
 #include <cstdlib>
+#include <iostream>
+#include <omp.h>
 #include <string>
+#include <vector>
 
 /*
     Tarefa A - Conceito
     O objetivo aqui é simular um problema de Desbalanceamento de Carga.
-    Como calcularemos fib(i % K), alguns índices i vão pedir um Fibonacci pequeno (rápido) e outros um Fibonacci grande (lento).
+    Como calcularemos fib(i % K), alguns índices i vão pedir um Fibonacci
+   pequeno (rápido) e outros um Fibonacci grande (lento).
 
-    * Se usar schedule(static), uma thread pode ter o azar de pegar todos os números "pesados" e demorar muito, enquanto as outras ficam ociosas esperando ela.
-    * O dynamic e o guided servem justamente para distribuir essa "bucha" de forma mais inteligente sob demanda.
+    * Se usar schedule(static), uma thread pode ter o azar de pegar todos os
+   números "pesados" e demorar muito, enquanto as outras ficam ociosas esperando
+   ela.
+    * O dynamic e o guided servem justamente para distribuir essa "bucha" de
+   forma mais inteligente sob demanda.
 */
 
 // Function Fibonacci (custosa) -> O objetivo é gastar CPU
@@ -27,7 +31,10 @@ int main(int argc, char *argv[])
     // schedule_type: 0=static, 1=dynamic, 2=guided
     if (argc < 5)
     {
-        std::cerr << "Uso: " << argv[0] << " <N> <K> <sched: 0=static, 1=dynamic, 2=guided> <chunk> [threads]" << std::endl;
+        std::cerr << "Uso: " << argv[0]
+                  << " <N> <K> <sched: 0=static, 1=dynamic, 2=guided> <chunk> "
+                     "[threads]"
+                  << std::endl;
         return 1;
     }
 
@@ -36,7 +43,8 @@ int main(int argc, char *argv[])
     int sched = std::atoi(argv[3]);
     int chunk = std::atoi(argv[4]);
 
-    // Se passar o número de threads como 5º argumento, define. Senão, usa o padrão do sistema
+    // Se passar o número de threads como 5º argumento, define. Senão, usa o
+    // padrão do sistema
     if (argc >= 6)
     {
         omp_set_num_threads(std::atoi(argv[5]));
@@ -79,13 +87,10 @@ int main(int argc, char *argv[])
     end_time = omp_get_wtime();
 
     // Formato da saída:  Type, N, K, Sched, Chunk, Threads, Time
-    std::cout << "TASK_A,"
-              << N << ","
-              << K << ","
-              << (sched == 0 ? "static" : (sched == 1 ? "dynamic" : "guided")) << ","
-              << chunk << ","
-              << omp_get_max_threads() << ","
+    std::cout << "TASK_A," << N << "," << K << ","
+              << (sched == 0 ? "static" : (sched == 1 ? "dynamic" : "guided"))
+              << "," << chunk << "," << omp_get_max_threads() << ","
               << (end_time - start_time) << std::endl;
 
     return 0;
-} 
+}
