@@ -9,10 +9,14 @@ plt.rcParams.update({"figure.max_open_warning": 0})
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 RESULTS_DIR = os.path.join(BASE_DIR, "results")
-DATA_A_PATH = os.path.join(RESULTS_DIR, "dados_A.csv")
-DATA_B_PATH = os.path.join(RESULTS_DIR, "dados_B.csv")
-PLOT_A_PATH = os.path.join(RESULTS_DIR, "grafico_tarefa_A.png")
-PLOT_B_PATH = os.path.join(RESULTS_DIR, "grafico_tarefa_B.png")
+DATA_A_PATH = os.environ.get("DATA_A_PATH", os.path.join(RESULTS_DIR, "dados_A.csv"))
+DATA_B_PATH = os.environ.get("DATA_B_PATH", os.path.join(RESULTS_DIR, "dados_B.csv"))
+PLOT_A_PATH = os.environ.get(
+    "PLOT_A_PATH", os.path.join(RESULTS_DIR, "grafico_tarefa_A.png")
+)
+PLOT_B_PATH = os.environ.get(
+    "PLOT_B_PATH", os.path.join(RESULTS_DIR, "grafico_tarefa_B.png")
+)
 
 
 def plot_task_a():
@@ -29,10 +33,15 @@ def plot_task_a():
     subset = df[(df["N"] == max_N) & (df["K"] == max_K)]
 
     # Agrupar médias para deixar mais simples o gráfico
-    # A ideia é comparar: Static vs Dynamic (Chunk 64) vs Guided (Chunk 64)
+    # A ideia é comparar: Static vs Dynamic (maior chunk) vs Guided (maior chunk)
     subset_static = subset[subset["Sched"] == "static"]
-    subset_dynamic = subset[(subset["Sched"] == "dynamic") & (subset["Chunk"] == 64)]
-    subset_guided = subset[(subset["Sched"] == "guided") & (subset["Chunk"] == 64)]
+    max_chunk = subset["Chunk"].max()
+    subset_dynamic = subset[
+        (subset["Sched"] == "dynamic") & (subset["Chunk"] == max_chunk)
+    ]
+    subset_guided = subset[
+        (subset["Sched"] == "guided") & (subset["Chunk"] == max_chunk)
+    ]
 
     final_df = pd.concat([subset_static, subset_dynamic, subset_guided])
 
