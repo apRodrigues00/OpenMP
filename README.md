@@ -4,6 +4,7 @@ Este repositório contém a implementação de soluções paralelas utilizando O
 
 ## Integrantes
 *André Pereira Rodrigues (19102468)*
+*Jean Paul Nunes Reinhold (21101175)*
 
 ## Estrutura do Projeto
 - `README.md`: Visão geral e instruções
